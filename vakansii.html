@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Всі вакансії Сміли — знайти роботу онлайн | robota-smila</title>
+<meta name="description" content="Каталог вакансій Сміли: продавці, водії, робітники, охорона та інші. Фільтруйте за графіком і зарплатою. Відгукніться на роботу мрії вже сьогодні!">
+<link rel="canonical" href="https://robota-smila.com.ua/vakansii/">
+<link rel="alternate" hreflang="uk-UA" href="https://robota-smila.com.ua/vakansii/">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="container nav">
+  <a href="index.html" class="logo">robota-<b>smila</b></a>
+  <div class="search"><input type="text" placeholder="Пошук: продавець, водій, без досвіду…"></div>
+  <nav class="nav-links">
+    <a href="vakansii.html">Вакансії</a>
+    <a href="vakansii.html#cats">Категорії</a>
+    <a href="rabotodatelyam.html">Роботодавцям</a>
+  </nav>
+  <a href="rabotodatelyam.html" class="btn green">Розмістити вакансію</a>
+  <button class="burger" aria-label="Меню">☰</button>
+</div></header>
+
+<div class="container">
+  <nav class="crumbs"><a href="index.html">Головна</a> › <span id="crumb">Вакансії</span></nav>
+  <h1 id="pageH1" style="font-size:28px;margin:0 0 20px">Вакансії у Смілі</h1>
+
+  <div class="layout">
+    <aside class="filters">
+      <h3>Фільтри</h3>
+      <div class="fgroup">
+        <div class="lbl">Категорія</div>
+        <div id="fcat"></div>
+      </div>
+      <div class="fgroup">
+        <div class="lbl">Зайнятість</div>
+        <label><input type="checkbox" class="ftype" value="FULL_TIME"> Повна</label>
+        <label><input type="checkbox" class="ftype" value="PART_TIME"> Часткова</label>
+        <label><input type="checkbox" class="ftype" value="SHIFT"> Змінна</label>
+      </div>
+      <div class="fgroup">
+        <div class="lbl">Умови</div>
+        <label><input type="checkbox" id="fexp"> Без досвіду</label>
+      </div>
+    </aside>
+
+    <main>
+      <div class="count" id="count"></div>
+      <div id="list"></div>
+    </main>
+  </div>
+</div>
+
+<footer class="site"><div class="container">
+  <div class="fbottom">© 2026 robota-smila.com.ua — Робота у Смілі. Всі права захищені.</div>
+</div></footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+const params = new URLSearchParams(location.search);
+const state = {cats:new Set(), types:new Set(), exp:false, q:(params.get('q')||'').toLowerCase()};
+
+// префільтр з URL
+if(params.get('cat')) state.cats.add(params.get('cat'));
+if(params.get('exp')) state.exp = true;
+
+// побудова чекбоксів категорій
+document.getElementById('fcat').innerHTML = CATEGORIES.map(c=>
+  `<label><input type="checkbox" class="fcatcb" value="${c.slug}" ${state.cats.has(c.slug)?'checked':''}> ${c.name}</label>`
+).join('');
+
+function render(){
+  let items = VACANCIES.slice();
+  if(state.cats.size) items = items.filter(v=>state.cats.has(v.cat));
+  if(state.types.size) items = items.filter(v=>state.types.has(v.type));
+  if(state.exp) items = items.filter(v=>!v.exp);
+  if(state.q) items = items.filter(v=>(v.title+' '+v.company+' '+v.short).toLowerCase().includes(state.q));
+  items.sort((a,b)=>new Date(b.date)-new Date(a.date));
+
+  document.getElementById('count').textContent = 'Знайдено вакансій: '+items.length +
+    (state.q?` за запитом «${state.q}»`:'');
+  document.getElementById('list').innerHTML = items.length
+    ? items.map(vacCard).join('')
+    : '<div class="vac">За вашим запитом вакансій не знайдено. Спробуйте змінити фільтри.</div>';
+
+  // H1 / crumb під категорію
+  if(state.cats.size===1){
+    const c = CATEGORIES.find(x=>state.cats.has(x.slug));
+    document.getElementById('pageH1').textContent = c.name+' — робота у Смілі';
+    document.getElementById('crumb').textContent = c.name;
+    document.title = c.name+' у Смілі — вакансії | robota-smila';
+  }
+}
+
+document.querySelectorAll('.fcatcb').forEach(cb=>cb.addEventListener('change',e=>{
+  e.target.checked?state.cats.add(e.target.value):state.cats.delete(e.target.value);render();
+}));
+document.querySelectorAll('.ftype').forEach(cb=>cb.addEventListener('change',e=>{
+  e.target.checked?state.types.add(e.target.value):state.types.delete(e.target.value);render();
+}));
+document.getElementById('fexp').addEventListener('change',e=>{state.exp=e.target.checked;render();});
+document.getElementById('fexp').checked = state.exp;
+
+render();
+</script>
+</body>
+</html>

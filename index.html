@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Робота в Смілі — свіжі вакансії 2026 | robota-smila.com.ua</title>
+<meta name="description" content="Актуальні вакансії у Смілі та Черкаській області. Знайдіть роботу без досвіду, підробіток чи повну зайнятість. Нові вакансії щодня — відгукуйтесь онлайн!">
+<link rel="canonical" href="https://robota-smila.com.ua/">
+<link rel="alternate" hreflang="uk-UA" href="https://robota-smila.com.ua/">
+<link rel="stylesheet" href="assets/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","name":"robota-smila.com.ua","url":"https://robota-smila.com.ua/","inLanguage":"uk-UA","potentialAction":{"@type":"SearchAction","target":"https://robota-smila.com.ua/vakansii?q={query}","query-input":"required name=query"}}
+</script>
+</head>
+<body>
+<header class="site"><div class="container nav">
+  <a href="index.html" class="logo">robota-<b>smila</b></a>
+  <div class="search"><input type="text" placeholder="Пошук: продавець, водій, без досвіду…"></div>
+  <nav class="nav-links">
+    <a href="vakansii.html">Вакансії</a>
+    <a href="vakansii.html#cats">Категорії</a>
+    <a href="rabotodatelyam.html">Роботодавцям</a>
+  </nav>
+  <a href="rabotodatelyam.html" class="btn green">Розмістити вакансію</a>
+  <button class="burger" aria-label="Меню">☰</button>
+</div></header>
+
+<section class="hero"><div class="container">
+  <h1>Робота в Смілі — актуальні вакансії</h1>
+  <p>Знайдіть роботу у Смілі та Черкаській області. Повна і часткова зайнятість, підробіток, вакансії без досвіду. Нові пропозиції щодня.</p>
+  <div class="cta">
+    <a href="vakansii.html" class="btn ghost">🔍 Знайти роботу</a>
+    <a href="rabotodatelyam.html" class="btn green">➕ Розмістити вакансію</a>
+  </div>
+  <div class="stats">
+    <div class="s"><b>420+</b><span>активних вакансій</span></div>
+    <div class="s"><b>85</b><span>компаній Сміли</span></div>
+    <div class="s"><b>17</b><span>нових сьогодні</span></div>
+  </div>
+</div></section>
+
+<section class="block" id="cats"><div class="container">
+  <h2 class="title">Вакансії за категоріями</h2>
+  <p class="sub">Оберіть напрямок і подивіться актуальні пропозиції у Смілі</p>
+  <div class="cats" id="catgrid"></div>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="container">
+  <h2 class="title">Свіжі вакансії Сміли</h2>
+  <p class="sub">Останні додані пропозиції роботи</p>
+  <div id="latest"></div>
+  <p style="text-align:center;margin-top:20px"><a href="vakansii.html" class="btn">Показати всі вакансії →</a></p>
+</div></section>
+
+<section class="block" style="padding-top:0"><div class="container">
+  <div class="seo-text">
+    <h2>Пошук роботи у Смілі, Черкаська область</h2>
+    <p><b>robota-smila.com.ua</b> — локальний сайт вакансій для міста Сміла. Тут зібрані актуальні пропозиції роботи від перевірених роботодавців Черкаської області: від продавців і водіїв до операторів виробництва, бухгалтерів та охоронців.</p>
+    <p>Шукаєте <b>роботу без досвіду</b> або <b>підробіток у Смілі</b>? Використовуйте зручні фільтри за типом зайнятості, графіком і зарплатою. Ми регулярно оновлюємо базу, щоб ви першими бачили нові вакансії. Розмістити резюме та відгукнутися на вакансію можна безкоштовно за кілька хвилин.</p>
+  </div>
+</div></section>
+
+<footer class="site"><div class="container">
+  <div class="fcols">
+    <div>
+      <h4>robota-smila.com.ua</h4>
+      <p style="color:#8397ab;margin:0">Локальний сайт пошуку роботи у Смілі та Черкаській області. Свіжі вакансії щодня.</p>
+    </div>
+    <div><h4>Шукачам</h4>
+      <a href="vakansii.html">Всі вакансії</a><a href="vakansii.html?cat=prodavets">Робота продавцем</a><a href="vakansii.html?cat=voditel">Робота водієм</a><a href="vakansii.html?exp=1">Без досвіду</a></div>
+    <div><h4>Роботодавцям</h4>
+      <a href="rabotodatelyam.html">Розмістити вакансію</a><a href="rabotodatelyam.html">Тарифи</a><a href="#">Каталог компаній</a></div>
+    <div><h4>Інформація</h4>
+      <a href="#">Про нас</a><a href="#">Блог</a><a href="#">Контакти</a></div>
+  </div>
+  <div class="fbottom">© 2026 robota-smila.com.ua — Робота у Смілі. Всі права захищені.</div>
+</div></footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+document.getElementById('catgrid').innerHTML = CATEGORIES.map(c=>{
+  const n = VACANCIES.filter(v=>v.cat===c.slug).length;
+  return `<a class="cat" href="vakansii.html?cat=${c.slug}"><span class="ico">${c.ico}</span><span><span class="n">${c.name}</span><br><span class="c">${n} вакансій</span></span></a>`;
+}).join('');
+document.getElementById('latest').innerHTML =
+  VACANCIES.slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,6).map(vacCard).join('');
+</script>
+</body>
+</html>

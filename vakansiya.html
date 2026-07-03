@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="pTitle">Вакансія у Смілі | robota-smila</title>
+<meta name="description" id="pDesc" content="Вакансія у Смілі. Відгукніться онлайн.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="container nav">
+  <a href="index.html" class="logo">robota-<b>smila</b></a>
+  <div class="search"><input type="text" placeholder="Пошук: продавець, водій, без досвіду…"></div>
+  <nav class="nav-links">
+    <a href="vakansii.html">Вакансії</a>
+    <a href="vakansii.html#cats">Категорії</a>
+    <a href="rabotodatelyam.html">Роботодавцям</a>
+  </nav>
+  <a href="rabotodatelyam.html" class="btn green">Розмістити вакансію</a>
+  <button class="burger" aria-label="Меню">☰</button>
+</div></header>
+
+<div class="container">
+  <nav class="crumbs" id="crumbs"></nav>
+  <div class="detail-grid">
+    <article class="detail" id="detail"></article>
+    <aside class="aside-apply">
+      <h3 style="margin-top:0">Відгукнутися</h3>
+      <form id="applyForm">
+        <div class="field"><label>Ваше ім'я</label><input required placeholder="Ім'я"></div>
+        <div class="field"><label>Телефон</label><input required placeholder="+380..." type="tel"></div>
+        <div class="field"><label>Повідомлення (необов'язково)</label><textarea rows="3" placeholder="Кілька слів про себе"></textarea></div>
+        <button class="btn green" style="width:100%" type="submit">Надіслати відгук</button>
+        <p style="color:var(--muted);font-size:13px;margin:10px 0 0">Натискаючи кнопку, ви погоджуєтесь на обробку даних.</p>
+      </form>
+      <div id="applyOk" style="display:none;color:var(--accent);font-weight:700">✓ Ваш відгук надіслано! Роботодавець зв'яжеться з вами.</div>
+    </aside>
+  </div>
+  <div style="margin:30px 0">
+    <h2 class="title">Схожі вакансії у Смілі</h2>
+    <div id="similar"></div>
+  </div>
+</div>
+
+<footer class="site"><div class="container">
+  <div class="fbottom">© 2026 robota-smila.com.ua — Робота у Смілі. Всі права захищені.</div>
+</div></footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script id="jobLd" type="application/ld+json"></script>
+<script>
+const id = +new URLSearchParams(location.search).get('id') || VACANCIES[0].id;
+const v = VACANCIES.find(x=>x.id===id) || VACANCIES[0];
+const cat = CATEGORIES.find(c=>c.slug===v.cat);
+
+document.getElementById('pTitle').textContent = `${v.title} — робота у Смілі, ${v.salary[0].toLocaleString('uk-UA')} грн | robota-smila`;
+document.getElementById('pDesc').setAttribute('content', `${v.company} шукає ${v.title.toLowerCase()} у Смілі. ${v.typeName}, ${v.schedule}. Відгукніться онлайн вже сьогодні!`);
+
+document.getElementById('crumbs').innerHTML =
+  `<a href="index.html">Головна</a> › <a href="vakansii.html">Вакансії</a> › <a href="vakansii.html?cat=${v.cat}">${cat.name}</a> › ${v.title}`;
+
+document.getElementById('detail').innerHTML = `
+  <h1>${v.title}</h1>
+  <div class="company" style="font-size:18px">${v.company}</div>
+  <div class="salary">${fmtSalary(v.salary)}</div>
+  <div class="tags">
+    <span class="tag">${v.typeName}</span>
+    <span class="tag gray">${v.schedule}</span>
+    ${v.exp?'':'<span class="tag">Без досвіду</span>'}
+    <span class="tag gray">📍 Сміла, ${v.district}</span>
+    <span class="tag gray">Оновлено: ${fmtDate(v.date)}</span>
+  </div>
+  <p style="font-size:18px">${v.short}</p>
+  <h3>Обов'язки</h3><ul>${v.duties.map(d=>`<li>${d}</li>`).join('')}</ul>
+  <h3>Вимоги</h3><ul>${v.req.map(d=>`<li>${d}</li>`).join('')}</ul>
+  <h3>Ми пропонуємо</h3><ul>${v.offer.map(d=>`<li>${d}</li>`).join('')}</ul>
+`;
+
+// JSON-LD JobPosting
+document.getElementById('jobLd').textContent = JSON.stringify({
+  "@context":"https://schema.org/","@type":"JobPosting",
+  "title":v.title,
+  "description":"<p>"+v.short+"</p><ul>"+v.duties.map(d=>"<li>"+d+"</li>").join("")+"</ul>",
+  "datePosted":v.date,"validThrough":"2026-09-01",
+  "employmentType":v.type==="SHIFT"?"OTHER":v.type,
+  "hiringOrganization":{"@type":"Organization","name":v.company},
+  "jobLocation":{"@type":"Place","address":{"@type":"PostalAddress","addressLocality":"Сміла","addressRegion":"Черкаська область","postalCode":"20700","addressCountry":"UA"}},
+  "baseSalary":{"@type":"MonetaryAmount","currency":"UAH","value":{"@type":"QuantitativeValue","minValue":v.salary[0],"maxValue":v.salary[1],"unitText":"MONTH"}}
+});
+
+// схожі
+document.getElementById('similar').innerHTML =
+  VACANCIES.filter(x=>x.cat===v.cat && x.id!==v.id).slice(0,3).map(vacCard).join('')
+  || VACANCIES.filter(x=>x.id!==v.id).slice(0,3).map(vacCard).join('');
+
+document.getElementById('applyForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('applyForm').style.display='none';
+  document.getElementById('applyOk').style.display='block';
+});
+</script>
+</body>
+</html>

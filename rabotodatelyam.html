@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Розмістити вакансію у Смілі — пошук працівників | robota-smila</title>
+<meta name="description" content="Розмістіть вакансію у Смілі та знайдіть співробітників швидко. Ваше оголошення побачать сотні місцевих шукачів роботи. Просте розміщення за 5 хвилин!">
+<link rel="canonical" href="https://robota-smila.com.ua/rabotodatelyam/">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="container nav">
+  <a href="index.html" class="logo">robota-<b>smila</b></a>
+  <div class="search"><input type="text" placeholder="Пошук: продавець, водій, без досвіду…"></div>
+  <nav class="nav-links">
+    <a href="vakansii.html">Вакансії</a>
+    <a href="vakansii.html#cats">Категорії</a>
+    <a href="rabotodatelyam.html">Роботодавцям</a>
+  </nav>
+  <a href="#form" class="btn green">Розмістити вакансію</a>
+  <button class="burger" aria-label="Меню">☰</button>
+</div></header>
+
+<section class="hero"><div class="container">
+  <h1>Знайдіть працівників у Смілі</h1>
+  <p>Розмістіть вакансію на robota-smila.com.ua — і ваше оголошення побачать сотні місцевих шукачів роботи вже сьогодні.</p>
+  <div class="cta"><a href="#form" class="btn ghost">➕ Розмістити вакансію безкоштовно</a></div>
+</div></section>
+
+<section class="block"><div class="container">
+  <h2 class="title">Як це працює</h2>
+  <p class="sub">Три прості кроки до нового співробітника</p>
+  <div class="steps">
+    <div class="step"><div class="num">1</div><h3>Опишіть вакансію</h3><p style="color:var(--muted)">Заповніть коротку форму: посада, зарплата, вимоги та контакти.</p></div>
+    <div class="step"><div class="num">2</div><h3>Ми публікуємо</h3><p style="color:var(--muted)">Після модерації вакансія з'являється у каталозі та в пошуку Google.</p></div>
+    <div class="step"><div class="num">3</div><h3>Отримуйте відгуки</h3><p style="color:var(--muted)">Кандидати відгукуються онлайн — ви отримуєте їхні контакти на пошту.</p></div>
+  </div>
+</div></section>
+
+<section class="block" id="form" style="padding-top:0"><div class="container">
+  <div class="detail" style="max-width:640px">
+    <h2 style="margin-top:0">Розмістити вакансію</h2>
+    <form id="jobForm">
+      <div class="field"><label>Назва вакансії *</label><input required placeholder="Напр. Продавець-касир"></div>
+      <div class="field"><label>Назва компанії *</label><input required placeholder="ТОВ / ФОП / магазин"></div>
+      <div class="field"><label>Зарплата, грн</label><input placeholder="напр. 16000 – 20000"></div>
+      <div class="field"><label>Опис вакансії *</label><textarea rows="5" required placeholder="Обов'язки, вимоги, умови"></textarea></div>
+      <div class="field"><label>Контактний телефон *</label><input required type="tel" placeholder="+380..."></div>
+      <button class="btn green" type="submit" style="width:100%">Надіслати на модерацію</button>
+    </form>
+    <div id="ok" style="display:none;color:var(--accent);font-weight:700;font-size:18px">✓ Дякуємо! Вакансію надіслано на модерацію. Ми опублікуємо її протягом дня.</div>
+  </div>
+</div></section>
+
+<footer class="site"><div class="container">
+  <div class="fbottom">© 2026 robota-smila.com.ua — Робота у Смілі. Всі права захищені.</div>
+</div></footer>
+
+<script src="assets/app.js"></script>
+<script>
+document.getElementById('jobForm').addEventListener('submit',e=>{
+  e.preventDefault();
+  document.getElementById('jobForm').style.display='none';
+  document.getElementById('ok').style.display='block';
+});
+</script>
+</body>
+</html>
