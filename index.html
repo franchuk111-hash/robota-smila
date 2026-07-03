@@ -14,24 +14,30 @@
 </head>
 <body>
 <header class="site"><div class="container nav">
-  <a href="index.html" class="logo">robota-<b>smila</b></a>
+  <a href="index.html" class="logo"><span class="mark"><i></i><i></i><i></i><i></i></span> robota-<b>smila</b></a>
+  <div class="toggle">
+    <a href="index.html" class="active">Шукачам</a>
+    <a href="rabotodatelyam.html">Роботодавцям</a>
+  </div>
   <div class="search"><input type="text" placeholder="Пошук: продавець, водій, без досвіду…"></div>
   <nav class="nav-links">
     <a href="vakansii.html">Вакансії</a>
     <a href="vakansii.html#cats">Категорії</a>
-    <a href="rabotodatelyam.html">Роботодавцям</a>
   </nav>
   <a href="rabotodatelyam.html" class="btn green">Розмістити вакансію</a>
   <button class="burger" aria-label="Меню">☰</button>
 </div></header>
 
-<section class="hero"><div class="container">
-  <h1>Робота в Смілі — актуальні вакансії</h1>
-  <p>Знайдіть роботу у Смілі та Черкаській області. Повна і часткова зайнятість, підробіток, вакансії без досвіду. Нові пропозиції щодня.</p>
-  <div class="cta">
-    <a href="vakansii.html" class="btn ghost">🔍 Знайти роботу</a>
-    <a href="rabotodatelyam.html" class="btn green">➕ Розмістити вакансію</a>
-  </div>
+<section class="hero">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <div class="container">
+  <h1>Знайдіть роботу<br>прямо зараз</h1>
+  <p>Актуальні вакансії у Смілі та Черкаській області. Повна і часткова зайнятість, підробіток, робота без досвіду.</p>
+  <form class="searchbar" action="vakansii.html" method="get">
+    <input type="text" name="q" placeholder="Посада, компанія або ключове слово">
+    <input type="text" value="Сміла" readonly style="max-width:200px;flex:0 0 200px">
+    <button class="btn" type="submit">Шукати</button>
+  </form>
   <div class="stats">
     <div class="s"><b>420+</b><span>активних вакансій</span></div>
     <div class="s"><b>85</b><span>компаній Сміли</span></div>
@@ -40,16 +46,15 @@
 </div></section>
 
 <section class="block" id="cats"><div class="container">
-  <h2 class="title">Вакансії за категоріями</h2>
-  <p class="sub">Оберіть напрямок і подивіться актуальні пропозиції у Смілі</p>
+  <h2 class="title center">Вакансії за категоріями</h2>
+  <p class="sub center">Оберіть напрямок і подивіться актуальні пропозиції у Смілі</p>
   <div class="cats" id="catgrid"></div>
 </div></section>
 
 <section class="block" style="padding-top:0"><div class="container">
-  <h2 class="title">Свіжі вакансії Сміли</h2>
-  <p class="sub">Останні додані пропозиції роботи</p>
-  <div id="latest"></div>
-  <p style="text-align:center;margin-top:20px"><a href="vakansii.html" class="btn">Показати всі вакансії →</a></p>
+  <h2 class="title center" id="countHead">Актуальні вакансії Сміли</h2>
+  <div class="grid3" id="latest"></div>
+  <p style="text-align:center;margin-top:36px"><a href="vakansii.html" class="btn lg">Ще вакансії</a></p>
 </div></section>
 
 <section class="block" style="padding-top:0"><div class="container">
@@ -83,6 +88,7 @@ document.getElementById('catgrid').innerHTML = CATEGORIES.map(c=>{
   const n = VACANCIES.filter(v=>v.cat===c.slug).length;
   return `<a class="cat" href="vakansii.html?cat=${c.slug}"><span class="ico">${c.ico}</span><span><span class="n">${c.name}</span><br><span class="c">${n} вакансій</span></span></a>`;
 }).join('');
+document.getElementById('countHead').textContent = '420 актуальних вакансій у Смілі';
 document.getElementById('latest').innerHTML =
   VACANCIES.slice().sort((a,b)=>new Date(b.date)-new Date(a.date)).slice(0,6).map(vacCard).join('');
 </script>
