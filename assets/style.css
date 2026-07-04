@@ -82,6 +82,11 @@ header.site{background:#fff;border-bottom:1px solid var(--border);position:stick
 .hero .b1{width:90px;height:90px;background:#dbe7ff;top:120px;right:9%}
 .hero .b2{width:54px;height:54px;background:#ffe3c2;top:250px;right:20%}
 .hero .b3{width:38px;height:38px;background:#d6f5e0;top:80px;right:32%}
+.hero .illus{position:absolute;width:76px;height:76px;border-radius:22px;display:flex;align-items:center;justify-content:center;font-size:36px;box-shadow:var(--shadow);z-index:1}
+.hero .i1{background:#e0ecff;top:110px;right:24%;transform:rotate(-8deg)}
+.hero .i2{background:#fff0dc;top:250px;right:11%;transform:rotate(7deg)}
+.hero .i3{background:#dcf6e6;top:400px;right:28%;transform:rotate(-5deg)}
+@media(max-width:1100px){.hero .illus{display:none}}
 
 /* ---------- Sections ---------- */
 section.block{padding:60px 0}

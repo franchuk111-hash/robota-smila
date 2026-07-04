@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="pTitle">Стаття про роботу у Смілі | robota-smila</title>
+<meta name="description" id="pDesc" content="Поради про пошук роботи у Смілі.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="container nav">
+  <a href="index.html" class="logo"><span class="mark"><i></i><i></i><i></i><i></i></span> robota-<b>smila</b></a>
+  <div class="toggle">
+    <a href="index.html" class="active">Шукачам</a>
+    <a href="rabotodatelyam.html">Роботодавцям</a>
+  </div>
+  <div class="search"><input type="text" placeholder="Пошук: продавець, водій, без досвіду…"></div>
+  <nav class="nav-links">
+    <a href="vakansii.html">Вакансії</a>
+    <a href="kompanii.html">Компанії</a>
+    <a href="blog.html">Блог</a>
+  </nav>
+  <a href="rabotodatelyam.html" class="btn green">Розмістити вакансію</a>
+  <button class="burger" aria-label="Меню">☰</button>
+</div></header>
+
+<div class="container">
+  <nav class="crumbs" id="crumbs"></nav>
+  <article class="detail" style="max-width:820px;margin:0 auto" id="article"></article>
+  <div style="max-width:820px;margin:26px auto 0;text-align:center">
+    <a href="vakansii.html" class="btn lg">Переглянути вакансії у Смілі</a>
+  </div>
+</div>
+
+<footer class="site"><div class="container">
+  <div class="fbottom">© 2026 robota-smila.com.ua — Робота у Смілі. Всі права захищені.</div>
+</div></footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script id="ld" type="application/ld+json"></script>
+<script>
+const slug = new URLSearchParams(location.search).get('slug');
+const a = ARTICLES.find(x=>x.slug===slug) || ARTICLES[0];
+
+document.getElementById('pTitle').textContent = a.title+' | robota-smila';
+document.getElementById('pDesc').setAttribute('content', a.excerpt);
+document.getElementById('crumbs').innerHTML =
+  `<a href="index.html">Головна</a> › <a href="blog.html">Блог</a> › ${a.title}`;
+document.getElementById('article').innerHTML = `
+  <h1>${a.title}</h1>
+  <div class="locs dim" style="margin:8px 0 20px">${new Date(a.date).toLocaleDateString('uk-UA',{day:'numeric',month:'long',year:'numeric'})}</div>
+  ${a.body.map(p=>`<p style="font-size:18px">${p}</p>`).join('')}
+`;
+document.getElementById('ld').textContent = JSON.stringify({
+  "@context":"https://schema.org","@type":"Article",
+  "headline":a.title,"description":a.excerpt,"datePublished":a.date,"inLanguage":"uk-UA",
+  "author":{"@type":"Organization","name":"robota-smila.com.ua"},
+  "publisher":{"@type":"Organization","name":"robota-smila.com.ua"}
+});
+</script>
+</body>
+</html>

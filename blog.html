@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Блог про роботу у Смілі — поради та зарплати | robota-smila</title>
+<meta name="description" content="Корисні статті про пошук роботи у Смілі: середні зарплати, як скласти резюме, робота без досвіду та поради для шукачів роботи Черкаської області.">
+<link rel="canonical" href="https://robota-smila.com.ua/blog/">
+<link rel="alternate" hreflang="uk-UA" href="https://robota-smila.com.ua/blog/">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="container nav">
+  <a href="index.html" class="logo"><span class="mark"><i></i><i></i><i></i><i></i></span> robota-<b>smila</b></a>
+  <div class="toggle">
+    <a href="index.html" class="active">Шукачам</a>
+    <a href="rabotodatelyam.html">Роботодавцям</a>
+  </div>
+  <div class="search"><input type="text" placeholder="Пошук: продавець, водій, без досвіду…"></div>
+  <nav class="nav-links">
+    <a href="vakansii.html">Вакансії</a>
+    <a href="kompanii.html">Компанії</a>
+    <a href="blog.html">Блог</a>
+  </nav>
+  <a href="rabotodatelyam.html" class="btn green">Розмістити вакансію</a>
+  <button class="burger" aria-label="Меню">☰</button>
+</div></header>
+
+<div class="container">
+  <nav class="crumbs"><a href="index.html">Головна</a> › Блог</nav>
+  <h1 style="font-size:38px;font-weight:800;color:var(--ink2);margin:0 0 8px">Блог про роботу у Смілі</h1>
+  <p class="sub">Поради для шукачів роботи, огляди зарплат та корисні матеріали</p>
+  <div class="grid3" id="articles"></div>
+</div>
+
+<footer class="site"><div class="container">
+  <div class="fbottom">© 2026 robota-smila.com.ua — Робота у Смілі. Всі права захищені.</div>
+</div></footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script>
+document.getElementById('articles').innerHTML = ARTICLES.map(a=>`
+  <article class="vac">
+    <h3><a href="stattia.html?slug=${a.slug}">${a.title}</a></h3>
+    <div class="locs dim" style="margin-bottom:12px">${new Date(a.date).toLocaleDateString('uk-UA',{day:'numeric',month:'long',year:'numeric'})}</div>
+    <p style="color:var(--muted);margin:0 0 16px">${a.excerpt}</p>
+    <a href="stattia.html?slug=${a.slug}" class="btn ghost">Читати статтю</a>
+  </article>`).join('');
+</script>
+</body>
+</html>

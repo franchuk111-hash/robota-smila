@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title id="pTitle">Компанія у Смілі | robota-smila</title>
+<meta name="description" id="pDesc" content="Вакансії компанії у Смілі.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site"><div class="container nav">
+  <a href="index.html" class="logo"><span class="mark"><i></i><i></i><i></i><i></i></span> robota-<b>smila</b></a>
+  <div class="toggle">
+    <a href="index.html" class="active">Шукачам</a>
+    <a href="rabotodatelyam.html">Роботодавцям</a>
+  </div>
+  <div class="search"><input type="text" placeholder="Пошук: продавець, водій, без досвіду…"></div>
+  <nav class="nav-links">
+    <a href="vakansii.html">Вакансії</a>
+    <a href="kompanii.html">Компанії</a>
+    <a href="blog.html">Блог</a>
+  </nav>
+  <a href="rabotodatelyam.html" class="btn green">Розмістити вакансію</a>
+  <button class="burger" aria-label="Меню">☰</button>
+</div></header>
+
+<div class="container">
+  <nav class="crumbs" id="crumbs"></nav>
+  <div class="detail" id="head" style="margin-bottom:26px"></div>
+  <h2 class="title" style="font-size:26px" id="vacTitle">Вакансії компанії</h2>
+  <div class="grid3" id="vacs"></div>
+</div>
+
+<footer class="site"><div class="container">
+  <div class="fbottom">© 2026 robota-smila.com.ua — Робота у Смілі. Всі права захищені.</div>
+</div></footer>
+
+<script src="assets/data.js"></script>
+<script src="assets/app.js"></script>
+<script id="ld" type="application/ld+json"></script>
+<script>
+const slug = new URLSearchParams(location.search).get('slug');
+const c = COMPANIES.find(x=>x.slug===slug) || COMPANIES[0];
+const list = VACANCIES.filter(v=>v.company===c.name);
+
+document.getElementById('pTitle').textContent = c.name+' — вакансії у Смілі | robota-smila';
+document.getElementById('pDesc').setAttribute('content', `${c.name}: ${c.about} Актуальні вакансії у Смілі.`);
+document.getElementById('crumbs').innerHTML =
+  `<a href="index.html">Головна</a> › <a href="kompanii.html">Компанії</a> › ${c.name}`;
+document.getElementById('head').innerHTML = `
+  <div class="company" style="font-size:26px;margin-bottom:12px"><span class="co-ico" style="width:52px;height:52px;font-size:28px;display:flex;align-items:center;justify-content:center;background:var(--soft)">${c.ico}</span><h1 style="margin:0;font-size:30px">${c.name}</h1></div>
+  <div class="locs" style="font-size:16px">${c.industry}<span class="dot">·</span>Сміла, ${c.district}</div>
+  <p style="font-size:18px;margin-top:14px">${c.about}</p>`;
+document.getElementById('vacTitle').textContent = `Вакансії компанії (${list.length})`;
+document.getElementById('vacs').innerHTML = list.length ? list.map(vacCard).join('')
+  : '<div class="vac">Наразі відкритих вакансій немає. Зазирніть пізніше.</div>';
+document.getElementById('ld').textContent = JSON.stringify({
+  "@context":"https://schema.org","@type":"Organization","name":c.name,
+  "description":c.about,"address":{"@type":"PostalAddress","addressLocality":"Сміла","addressRegion":"Черкаська область","addressCountry":"UA"}
+});
+</script>
+</body>
+</html>

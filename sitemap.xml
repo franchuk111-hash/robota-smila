@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://robota-smila.com.ua/</loc><changefreq>daily</changefreq><priority>1.0</priority></url>
+  <url><loc>https://robota-smila.com.ua/vakansii/</loc><changefreq>hourly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://robota-smila.com.ua/rabotodatelyam/</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://robota-smila.com.ua/kompanii/</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://robota-smila.com.ua/blog/</loc><changefreq>weekly</changefreq><priority>0.6</priority></url>
+
+  <!-- Категорії вакансій -->
+  <url><loc>https://robota-smila.com.ua/vakansii/prodavets/</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robota-smila.com.ua/vakansii/voditel/</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robota-smila.com.ua/vakansii/robitnyk/</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robota-smila.com.ua/vakansii/horeca/</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robota-smila.com.ua/vakansii/ohorona/</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+  <url><loc>https://robota-smila.com.ua/vakansii/office/</loc><changefreq>daily</changefreq><priority>0.8</priority></url>
+
+  <!-- Блог -->
+  <url><loc>https://robota-smila.com.ua/blog/serednya-zarplata-smila-2026/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://robota-smila.com.ua/blog/robota-bez-dosvidu-smila/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://robota-smila.com.ua/blog/yak-sklasty-rezume/</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+</urlset>
